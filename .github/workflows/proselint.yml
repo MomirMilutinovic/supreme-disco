@@ -1,0 +1,14 @@
+on:
+  pull_request:
+
+jobs:
+  proselint:
+    name: Proselint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Proselint
+        run: add-apt-repository universe && apt install python3-proselint
+      - name: Run Proselint
+        run: find . -iname "*.md" | xargs proselint
+    
